@@ -1,0 +1,89 @@
+/* General Reset */
+body, h1, p, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Cantarell;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Top Navigation Bar */
+.top-nav {
+    background-color: #3C6EB4;
+    color: #fff;
+    padding: 17px 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-nav .logo {
+    font-size: 2rem;
+    font-weight: 590;
+    font-family: Cantarell, sans-serif;
+}
+
+.top-nav .profile {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+/* Main Layout */
+.main-layout {
+    display: flex;
+    flex: 1;
+}
+
+/* Side Navigation */
+.side-nav {
+    width: 200px;
+    background-color: #f4f4f4;
+    border-right: 1px solid #ddd;
+}
+
+.side-nav ul {
+    list-style: none;
+}
+
+.side-nav ul li {
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom:1px solid #ddd;
+}
+
+.side-nav ul a li {
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 444;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.side-nav ul li:hover {
+    background-color: #ddd;
+}
+
+/* Main Content */
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.content h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 1rem;
+    color: #555;
+}
