@@ -57,6 +57,10 @@ body {
     border-bottom:1px solid #ddd;
 }
 
+.side-nav ul a {
+    text-decoration: none;
+}
+
 .side-nav ul a li {
     color: #333;
     font-size: 1.5rem;
