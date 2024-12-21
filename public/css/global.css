@@ -28,9 +28,19 @@ body {
     font-family: Cantarell, sans-serif;
 }
 
+.top-nav .logo a {
+    text-decoration: none;
+    color: #fff;
+}
+
 .top-nav .profile {
     font-size: 1.3rem;
     font-weight: 500;
+}
+
+.top-nav .profile a {
+    color: #fff;
+    text-decoration: none;
 }
 
 /* Main Layout */
