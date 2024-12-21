@@ -73,12 +73,28 @@ body {
 
 .side-nav ul a li {
     color: #333;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 444;
     display: block;
-    border-radius: 4px;
     transition: background-color 0.3s;
 }
+
+/* Side Navigation with Icons */
+.side-nav ul li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.side-nav ul li i {
+    font-size: 1rem;
+    padding-right:10px;
+}
+
+.side-nav ul li:hover i {
+    color: #3C6EB4;
+}
+/* End side-nav with icons */
 
 .side-nav ul li:hover {
     background-color: #ddd;
