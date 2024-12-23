@@ -23,14 +23,14 @@ defer client.deinit();
 
 - `client` - create a client that will interact/communicate with the website.
 - `defer client.deinit()` - clear the memory once the program exits.
-
+>  https://ziglang.org/documentation/master/std/#std.http.Client
 4. **Setting up the website URL request information from**:
 ```zig
 const url = try std.Uri.parse("http:localhost:8080");
 ```
 - `std.Uri.parse` - turns the string into a valid URI object that HTTP client can use.
 - `try` - checks if the link is valid(in this code).
-
+> https://ziglang.org/documentation/master/std/#std.Uri.parse
 5. **Setting up the HTTP request**:
 ```zig
 header_buffer: [4096]u8 = undefined;
