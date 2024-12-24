@@ -18,5 +18,5 @@ podman system service tcp:localhost:8080 --time=0 &
 
 ![back-end img](./docs/img/back-end.png)
 1. When the user clicks any of the sections, JavaScript sends a **GET request** to the Zig application.
-2. Zig receives the HTTP request from JavaScript and send a **GET Request** to the **Podman API endpoint**.
-3. **Fetch the JSON data** from Podman and return it directory to the JavaScript front-end without storing it.
+2. Zig **receives the HTTP request from JavaScript** and send a **GET Request** to the **Podman API endpoint**.
+3. **Fetch the JSON data** from Podman and **return it directly to the JavaScript** front-end without storing it.
