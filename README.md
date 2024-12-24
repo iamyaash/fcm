@@ -1,7 +1,7 @@
 # fcm
 Fedora Container Manager
 
-1. Start the Podman API Server:
+1. **Start the Podman API Server**:
 
 ``` sh
 podman system service tcp:localhost:8080 --time=0 &
@@ -12,4 +12,4 @@ podman system service tcp:localhost:8080 --time=0 &
 - The above command starts the server, which enables to communicate with Podman using http request to send & receive data.
 - This is the first and foremost step complete for API communications.
 
-2. [Send HTTP Request using Ziglang](./get/README.md)
+2. [**Send HTTP Request using Ziglang**](./get/README.md)
