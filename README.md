@@ -13,3 +13,10 @@ podman system service tcp:localhost:8080 --time=0 &
 - This is the first and foremost step complete for API communications.
 
 2. [**Send HTTP Request using Ziglang**](./get/README.md)
+
+## Workflow
+
+![back-end img](./docs/img/back-end.png)
+1. When the user clicks any of the sections, JavaScript sends a **GET request** to the Zig application.
+2. Zig receives the HTTP request from JavaScript and send a **GET Request** to the **Podman API endpoint**.
+3. **Fetch the JSON data** from Podman and return it directory to the JavaScript front-end without storing it.
