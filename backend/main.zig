@@ -4,11 +4,11 @@ const allocator = std.heap.GeneralPurposeAllocator(.{}){};
 const routes = @import("routes");
 
 pub fn main() !void {
-    // Initialize the GeneralPurposeAllocator (GPA) for dynamic memory management
+    // initialize GPA
     var gpa = allocator.init();
     defer gpa.deinit();
 
-    // Initialize the HTTP server
+    // initialize HTTP server
     var server = try http.Server.init(gpa.allocator(), 8080, handleRequest);
     defer server.deinit();
 
@@ -19,16 +19,16 @@ pub fn main() !void {
 fn handleRequest(req: *http.Request, allocator: *std.mem.Allocator) !void {
     switch (req.uri.path) {
         "/containers" => {
-            try routes.get_containers.handleRequest(req, allocator); // Call the handler for /containers
+            try routes.get_containers.handleRequest(req, allocator);
         },
         "/images" => {
-            try routes.get_images.handleRequest(req, allocator); // Call the handler for /images
+            try routes.get_images.handleRequest(req, allocator);
         },
         "/pods" => {
-            try routes.get_pods.handleRequest(req, allocator); // Call the handler for /pods
+            try routes.get_pods.handleRequest(req, allocator);
         },
         else => {
-            // Handle other requests or return a 404 Not Found
+            // handle other requests or return a 404 Not Found
             req.response.status = .not_found;
             try req.response.write("404 - Not Found\n");
         },
