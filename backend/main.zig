@@ -1,36 +1,28 @@
 const std = @import("std");
 const http = std.http;
-const allocator = std.heap.GeneralPurposeAllocator(.{}){};
-const routes = @import("routes");
 
 pub fn main() !void {
-    // initialize GPA
-    var gpa = allocator.init();
+    // Initialize a GeneralPurposeAllocator instance
+    const gpa = std.heap.GeneralPurposeAllocator(.{});
     defer gpa.deinit();
 
-    // initialize HTTP server
-    var server = try http.Server.init(gpa.allocator(), 8080, handleRequest);
+    const allocator = &gpa.allocator;
+
+    // Create a network listener for the server
+    const listener = try std.net.Server.listen(std.net.Address.any_ipv4(8080), 100, allocator);
+    defer listener.close();
+
+    // Initialize the HTTP server
+    var server = http.Server.init(listener, allocator);
     defer server.deinit();
 
     std.debug.print("Server running on http://localhost:8080\n", .{});
-    try server.run(); // Start the HTTP server and wait for requests
+
+    // Start handling requests
+    try server.serve(handleRequest);
 }
 
-fn handleRequest(req: *http.Request, allocator: *std.mem.Allocator) !void {
-    switch (req.uri.path) {
-        "/containers" => {
-            try routes.get_containers.handleRequest(req, allocator);
-        },
-        "/images" => {
-            try routes.get_images.handleRequest(req, allocator);
-        },
-        "/pods" => {
-            try routes.get_pods.handleRequest(req, allocator);
-        },
-        else => {
-            // handle other requests or return a 404 Not Found
-            req.response.status = .not_found;
-            try req.response.write("404 - Not Found\n");
-        },
-    }
+fn handleRequest(req: *http.Request) !void {
+    req.response.status = .ok;
+    try req.response.write("Server is running\n");
 }
