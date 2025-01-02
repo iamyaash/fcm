@@ -22,7 +22,8 @@ podman system service tcp:localhost:8080 --time=0 &
 ![backend-explained img](./docs/img/backend-explain-zig.png)
 1. When the user clicks any of the sections, JavaScript sends a **GET request** to the Zig application.
 2. Zig **receives the HTTP request from JavaScript** and send a **GET Request** to the **Podman API endpoint**.
-3. **Fetch the JSON data** from Podman and sends **return it directly to the JavaScript** front-end without storing it.
+3. Podman will **fetches & returns the JSON data to Zig** from API endpoint. 
+4. Zig transforms the unstructured JSON data to structured data and sends it to JavaScript.
 
 ### Front-end
 ![front-end img](./docs/img/front-end.img)
