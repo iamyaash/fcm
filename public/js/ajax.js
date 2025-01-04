@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const links = document.querySelectorAll(".side-nav ul a");
     const contentArea = document.querySelector(".content");
 
-    // Function to load a page
     function loadPage(pageUrl) {
         contentArea.innerHTML = `<div class="loading">Loading...</div>`;
 
@@ -23,15 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // Load the default page on initial load
-    console.log("Loading default page: pages/home.html");
-    loadPage("pages/home.html");
+    console.log("Loading default page: pages/dashboard.html");
+    loadPage("pages/dashboard.html");
 
-    // Add click event listener to each link
+
     links.forEach(link => {
         link.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default navigation
-            const pageUrl = this.getAttribute("href"); // Get the URL of the page
+            event.preventDefault();
+            const pageUrl = this.getAttribute("href");
             console.log(`Navigation link clicked. Loading: ${pageUrl}`);
             loadPage(pageUrl);
         });
