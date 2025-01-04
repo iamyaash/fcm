@@ -1,0 +1,9 @@
+/* Highlight active link */
+.side-nav ul a.active li {
+    background-color: #1E375A;
+    color: #ffff;
+}
+
+.side-nav ul a.active li i {
+    color: #fff;
+}
