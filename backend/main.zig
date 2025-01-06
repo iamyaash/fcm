@@ -1,28 +1,28 @@
 const std = @import("std");
-const http = std.http;
+const process = std.process;
 
 pub fn main() !void {
-    // Initialize a GeneralPurposeAllocator instance
-    const gpa = std.heap.GeneralPurposeAllocator(.{});
-    defer gpa.deinit();
+    // Allocator setup
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer _ = gpa.deinit();
+    const allocator = gpa.allocator();
 
-    const allocator = &gpa.allocator;
+    // Podman system service command
+    const command = &[_][]const u8{
+        "podman", "system", "service",
+        "tcp:localhost:8080",
+        "--time=0"
+    };
 
-    // Create a network listener for the server
-    const listener = try std.net.Server.listen(std.net.Address.any_ipv4(8080), 100, allocator);
-    defer listener.close();
+    // Create child process using process.Child instead of ChildProcess
+    var child = process.Child.init(command, allocator);
 
-    // Initialize the HTTP server
-    var server = http.Server.init(listener, allocator);
-    defer server.deinit();
+    // Configure process to run in background
+    child.stdout_behavior = .Ignore;
+    child.stderr_behavior = .Ignore;
 
-    std.debug.print("Server running on http://localhost:8080\n", .{});
+    // Spawn the Podman system service
+    try child.spawn();
 
-    // Start handling requests
-    try server.serve(handleRequest);
-}
-
-fn handleRequest(req: *http.Request) !void {
-    req.response.status = .ok;
-    try req.response.write("Server is running\n");
+    std.debug.print("Podman system service started on localhost:8080\n", .{});
 }
